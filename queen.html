@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUEENS</title>
+</head>
+<body>
+    <script>
+        var n = parseInt(prompt(" Enter the number of Queens: "));
+        if( n < 4){
+            document.write("wrong not solvable");
+        }
+        if( n >= 4){
+            var even = new Array();
+            var odd = new Array();
+            var i =1;
+            while( 2 * i <= n){
+                even.push(2 * i);
+                i++;
+            }
+            i = 0 ;
+            while( 2 * i + 1 <= n){
+                odd.push(2 * i + 1);
+                i++;
+            }
+            if( n % 6 == 2){
+                odd[0] = 3;
+                odd[1] = 1;
+                odd.splice(2,1);
+                odd.push(5);
+            }
+            if( n % 6 == 3){
+                even.splice(0 , 1);
+                even.push(2);
+                odd.splice(0,2);
+                odd.push(1);
+                odd.push(3);
+            }
+            var col = new Array();
+         for( i = 0 ; i < even.length ; i++){
+             col.push( n - even[i]);
+         }
+         for( i = 0 ; i < odd.length ; i++){
+             col.push( n - odd[i]);
+         }
+         var bord = new Array();
+         for( i = 0 ; i < n ; i++){
+             var tmp = new Array();
+             for (let j = 0; j < n; j++) {
+                 tmp[j]=0;  
+             }
+             bord.push(tmp);
+         }
+         for (let j = 0; j < n; j++) {
+                bord[col[j]][j] = 1; 
+             }
+             document.write("<table border=2 width=100%>");
+                for( i = 0 ; i < n ; i++){
+                    document.write("<tr><td>");
+                    for (let j = 0; j < n-1; j++){
+
+                            if(bord[i][j]==1){
+                                document.write("Q" +"</td><td>")
+                            }
+                            if( bord[i][j]== 0){
+                                document.write(" " +"</td><td>")
+
+                                }
+                    }
+                    if(bord[i][n-1]==1){
+                                document.write("Q" +"</td>")
+                            }
+                    if( bord[i][n-1]== 0){
+                                document.write(" " +"</td>")
+
+                                }
+                
+                    document.write(" </td> ");
+                }
+                document.write(" </tr> ");
+
+
+
+                
+            }
+
+
+    </script>
+    
+</body>
+</html>
